@@ -1,24 +1,48 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usere テーブル
 
-Things you may want to cover:
+| Column           | Type   | Option      |
+| ---------------- | -------| ------------|
+| nickname         | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| family_name      | string | null: false |
+| fast_name        | string | null: false |
+| kana_family_name | string | null: false |
+| kana_fast_name   | string | null: false |
+| birthday         | date   | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many : items
+- has_one : buyer
 
-* Configuration
+## buyer テーブル
 
-* Database creation
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_code     | string     | null: false                    |
+| prefecture    | string     | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| phon_number   | string     |                                |
+| user_id       | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to : users
 
-* Services (job queues, cache servers, search engines, etc.)
+## items テーブル
+| Columu       | Type       | Option                        |
+| ------------ | ---------- | ----------------------------- |
+| product_name | string     | null: false                   |
+| description  | string     | null: false                   |
+| category     | string     | null: false                   |
+| status       | string     | null: false                   |
+| price        | string     | null: false                   |
+| user         | references | null: false,foreign_key: true |
 
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to : users
