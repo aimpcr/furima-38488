@@ -15,7 +15,6 @@
 
 ### Association
 
-- has_one :sendiing_destunation
 - has_many : items
 - has_many : purchases
 
@@ -28,40 +27,40 @@
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |                                |
-| phon_number   | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| phone_number  | string     | null: false                    |
+| user_id       | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : user
+- belongs_to : purchase
 
 ## items テーブル
 
-| Columu             | Type       | Option                        |
-| ------------------ | ---------- | ----------------------------- |
-| product_name       | string     | null: false                   |
-| description        | string     | null: false                   |
-| category_id        | integer    | null: false                   |
-| status_id          | integer    | null: false                   |
-| delivery_charge_id | integer    | null: false                   |
-| prefecture_id      | integer    | null: false                   |
-| days_id            | integer    | null: false                   |
-| price              | integer    | null: false                   |
-| user               | references | null: false,foreign_key: true |
+| Columu             | Type       | Option                         |
+| ------------------ | ---------- | ------------------------------ |
+| product_name       | string     | null: false                    |
+| description        | string     | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| days_id            | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to : user
-- belongs_to : purchase
+- has_one : purchase
 
 ## purchases テーブル
 
-| Columu  | Type    | Option      |
-| ------- --------- | ----------- |
-| user_id | integer | null: false |
-| item_id | integer | null: false |
+| Columu  | Type       | Option                         |
+| ------- ------------ | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : user
-- has_many : items
+- has_one : sendiing_destunation
+- belongs_to : items
