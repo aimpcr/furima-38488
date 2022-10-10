@@ -6,7 +6,7 @@
 | ------------------ | -------| --------------------------|
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| encrypted_pa​​ssword | string | null: false               |
+| encrypted_password | string | null: false               |
 | family_name        | string | null: false               |
 | first_name         | string | null: false               |
 | kana_family_name   | string | null: false               |
@@ -36,7 +36,7 @@
 
 ## items テーブル
 
-| Columu             | Type       | Option                         |
+| Column             | Type       | Option                         |
 | ------------------ | ---------- | ------------------------------ |
 | product_name       | string     | null: false                    |
 | description        | text       | null: false                    |
@@ -44,9 +44,9 @@
 | status_id          | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                    |
-| day_id            | integer    | null: false                    |
+| delivery_date_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -55,10 +55,10 @@
 
 ## purchases テーブル
 
-| Columu  | Type       | Option                         |
-| ------- ------------ | ------------------------------ |
-| user | references | null: false, foreign_key: true |
-| item | references | null: false, foreign_key: true |
+| Column | Type       | Option                         |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
