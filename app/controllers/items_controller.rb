@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   #ログインしていないユーザーはトップページに返す
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item_user, only: [:edit, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -24,10 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id == current_user.id
-    else
-      redirect_to root_path
-    end
   end
   
   def update
@@ -39,6 +36,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -48,4 +50,12 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def set_item_user
+    if @item.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
+  end
+
 end
