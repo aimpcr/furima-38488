@@ -1,13 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @order_form = OrderForm.new
     @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
   def create
     @order_form = OrderForm.new(order_params)
     @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
     if @order_form.valid?
       pay_item
       @order_form.save
