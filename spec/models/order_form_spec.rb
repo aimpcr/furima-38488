@@ -31,7 +31,7 @@ RSpec.describe OrderForm, type: :model do
       it '郵便番号がないと登録できない' do
         @order_form.post_code = ''
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Post code can't be blank", "Post code is invalid")
+        expect(@order_form.errors.full_messages).to include("Post code can't be blank")
       end
       it '郵便番号が3桁ハイフン4桁でなければ登録できない' do
         @order_form.post_code = '2640007'
