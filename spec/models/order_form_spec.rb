@@ -15,6 +15,14 @@ RSpec.describe OrderForm, type: :model do
         @order_form.building_name = nil
         expect(@order_form).to be_valid
       end
+      it '電話番号は10桁であれば登録できる' do
+        @order_form.phone_number = '0123456789'
+        expect(@order_form).to be_valid
+      end
+      it '電話番号は11桁であれば登録できる' do
+        @order_form.phone_number = '01234567891'
+        expect(@order_form).to be_valid
+      end
     end
 
     context '配送先情報の登録ができないとき' do
