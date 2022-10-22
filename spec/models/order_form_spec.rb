@@ -59,7 +59,7 @@ RSpec.describe OrderForm, type: :model do
       it '電話番号がなければ登録できない' do
         @order_form.phone_number = ""
         @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number can't be blank","Phone number is invalid")
+      expect(@order_form.errors.full_messages).to include("Phone number can't be blank")
       end
       it '電話番号は9桁以下では登録できない' do
         @order_form.phone_number = "01234567"
