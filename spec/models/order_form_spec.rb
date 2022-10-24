@@ -36,17 +36,17 @@ RSpec.describe OrderForm, type: :model do
       it '郵便番号が3桁ハイフン4桁でなければ登録できない' do
         @order_form.post_code = '2640007'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Post code is invalid")
+        expect(@order_form.errors.full_messages).to include("Post code は3桁-4桁で入力してください")
       end
       it '郵便番号は半角文字列でなければ登録できない' do
         @order_form.post_code = '２６４−０００７'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Post code is invalid")
+        expect(@order_form.errors.full_messages).to include("Post code は3桁-4桁で入力してください")
       end
       it '都道府県がなければ登録できない' do
         @order_form.prefecture_id = 1
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_form.errors.full_messages).to include("Prefecture を入力してください")
       end
       it '市区町村がなければ登録できない' do
         @order_form.city = ''
@@ -66,17 +66,17 @@ RSpec.describe OrderForm, type: :model do
       it '電話番号は9桁以下では登録できない' do
         @order_form.phone_number = "01234567"
         @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_form.errors.full_messages).to include("Phone number は10〜11桁で入力してください")
       end
       it '電話番号は12桁以上では登録できない' do
         @order_form.phone_number = "012345678901"
         @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_form.errors.full_messages).to include("Phone number は10〜11桁で入力してください")
       end
       it '電話番号は半角数値でなければ登録できない' do
         @order_form.phone_number = "０１２３４５６７８９１"
         @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_form.errors.full_messages).to include("Phone number は10〜11桁で入力してください")
       end
       it "tokenが空では登録できない" do
         @order_form.token = nil
